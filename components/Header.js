@@ -10,7 +10,7 @@ import {
 export default function Header() {
   return (
     <div>
-      <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
+      <header className="grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
         <div className="relative flex items-center h-10 cursor-pointer my-auto">
           <Image
             src="https://links.papareact.com/qd3"
@@ -19,11 +19,11 @@ export default function Header() {
             objectPosition="left"
           />
         </div>
-        <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-sm">
+        <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-md">
           <input
             type="text"
             placeholder="Start Your Search"
-            className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
+            className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400 "
           />
           <SearchIcon
             className="hidden md:inline-flex h-8 bg-red-400 

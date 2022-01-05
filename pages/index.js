@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LargeCard from "../components/LargeCard";
 import MediumCard from "../components/MediumCard";
@@ -7,7 +8,7 @@ import SmallCard from "../components/SmallCard";
 
 export default function Home({ exploreData, cardsData }) {
   return (
-    <div className="">
+    <div>
       <Head>
         <title>Airbnb Clone</title>
         <link
@@ -15,10 +16,10 @@ export default function Home({ exploreData, cardsData }) {
           href="https://www.clipartmax.com/png/small/114-1149625_executive-airbnb-cleaning-airbnb-logo-png.png"
         />
       </Head>
-
-      <Header />
+      <section className="sticky top-0 z-50">
+        <Header />
+      </section>
       <Banner />
-
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
         <section className="pt-6">
           <h2 className="text-4xl font-semibold pb-5">Explore nearby</h2>
@@ -33,7 +34,7 @@ export default function Home({ exploreData, cardsData }) {
             ))}
           </div>
         </section>
-        <section>
+        <section className>
           <h2 className="text-4xl font-semibold py-8">Live Anywhere</h2>
           <div className="flex space-x-5 overflow-scroll scrollbar-hide p-3 -ml-3">
             {cardsData?.map(({ img, title }) => (
@@ -48,6 +49,7 @@ export default function Home({ exploreData, cardsData }) {
           buttonText="Get Inspired"
         />
       </main>
+      <Footer />
     </div>
   );
 }
