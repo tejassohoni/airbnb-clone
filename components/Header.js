@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
@@ -12,11 +13,24 @@ import {
   UsersIcon,
 } from "@heroicons/react/solid";
 
-export default function Header() {
+export default function Header({ placeholder }) {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [numberOfGuests, setNumberOfGuests] = useState(1);
+  const router = useRouter();
+
+  const search = () => {
+    router.push({
+      pathname: "/search",
+      query: {
+        location: searchInput,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        numberOfGuests,
+      },
+    });
+  };
 
   const selectionRange = {
     startDate: startDate,
@@ -36,7 +50,10 @@ export default function Header() {
   return (
     <div>
       <header className="grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
-        <div className="relative flex items-center h-10 cursor-pointer my-auto">
+        <div
+          className="relative flex items-center h-10 cursor-pointer my-auto"
+          onClick={() => router.push("/")}
+        >
           <Image
             src="https://links.papareact.com/qd3"
             layout="fill"
@@ -47,7 +64,7 @@ export default function Header() {
         <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-md">
           <input
             type="text"
-            placeholder="Start Your Search"
+            placeholder={placeholder || "Start Your Search"}
             className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
@@ -95,7 +112,10 @@ export default function Header() {
               >
                 Cancel
               </button>
-              <button className="flex-grow text-red-500 hover:text-red-400 transition duration-200 ease-out">
+              <button
+                onClick={search}
+                className="flex-grow text-red-500 hover:text-red-400 transition duration-200 ease-out"
+              >
                 Search
               </button>
             </div>
